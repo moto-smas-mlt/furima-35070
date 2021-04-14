@@ -17,17 +17,17 @@
 
 
 ## items テーブル
-|Column                  |Type        |Options            |
-|------------------------|------------|-------------------|
-| item_name              | string     | null false        |
-| item_description       | text       | null false        |
-| category               | integer    | null false        |
-| item_status            | integer    | null false        |
-| delivery_charge_burden | integer    | null false        |
-| delivery_area          | integer    | null false        |
-| days_to_ship           | integer    | null false        |
-| price                  | string     | null false        |
-| user                   | references | foreign_key: true |
+|Column                     |Type        |Options            |
+|---------------------------|------------|-------------------|
+| name                      | string     | null false        |
+| description               | text       | null false        |
+| category_id               | integer    | null false        |
+| item_status_id            | integer    | null false        |
+| delivery_charge_burden_id | integer    | null false        |
+| prefectures_id            | integer    | null false        |
+| days_to_ship_id           | integer    | null false        |
+| price                     | string     | null false        |
+| user                      | references | foreign_key: true |
 
 ### Association
 - belongs_to :user
@@ -47,15 +47,15 @@
 
 
 ## addressesテーブル
-|Column         |Type        |Options            |
-|---------------|------------|-------------------|
-| postal_code   | string     | null false        |
-| prefectures   | string     | null false        |
-| municipality  | string     | null false        |
-| house number  | string     | null false        |
-| building_name | string     |                   |
-| tel_number    | string     | null false        |
-| user          | references | foreign_key: true |
+|Column          |Type        |Options            |
+|--------------- |------------|-------------------|
+| postal_code    | string     | null false        |
+| prefectures_id | integer    | null false        |
+| municipality   | string     | null false        |
+| house number   | string     | null false        |
+| building_name  | string     |                   |
+| tel_number     | string     | null false        |
+| user           | references | foreign_key: true |
 
 ### Association
 - belongs_to :buy_item
