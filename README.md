@@ -27,7 +27,7 @@
 | delivery_charge_burden_id | integer    | null false        |
 | prefectures_id            | integer    | null false        |
 | days_to_ship_id           | integer    | null false        |
-| price                     | string     | null false        |
+| price                     | integer    | null false        |
 | user                      | references | foreign_key: true |
 
 ### Association
@@ -56,7 +56,7 @@
 | house number   | string     | null false        |
 | building_name  | string     |                   |
 | tel_number     | string     | null false        |
-| user           | references | foreign_key: true |
+| buy_item       | references | foreign_key: true |
 
 ### Association
 - belongs_to :buy_item
