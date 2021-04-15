@@ -1,24 +1,62 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users テーブル
+|Column              |Type    |Options                   |
+|------------------- |--------|--------------------------|
+| nickname           | string | null false               |
+| email              | string | null false, unique: true |
+| encrypted_password | string | null false               |
+| last_name          | string | null false               |
+| first_name         | string | null false               |
+| last_name_kana     | string | null false               |
+| first_name_kana    | string | null false               |
+| birthday           | date   | null false               |
 
-Things you may want to cover:
+### Association
+- has_many :items
+- has_many :buy_items
 
-* Ruby version
 
-* System dependencies
+## items テーブル
+|Column                     |Type        |Options            |
+|---------------------------|------------|-------------------|
+| name                      | string     | null false        |
+| description               | text       | null false        |
+| category_id               | integer    | null false        |
+| item_status_id            | integer    | null false        |
+| delivery_charge_burden_id | integer    | null false        |
+| prefectures_id            | integer    | null false        |
+| days_to_ship_id           | integer    | null false        |
+| price                     | integer    | null false        |
+| user                      | references | foreign_key: true |
 
-* Configuration
+### Association
+- belongs_to :user
+- has_one :buy_item
 
-* Database creation
 
-* Database initialization
+## buy_itemsテーブル
+|Column   |Type        |Options            |
+|---------|------------|-------------------|
+| user    | references | foreign_key: true |
+| item    | references | foreign_key: true |
 
-* How to run the test suite
+### Association
+- belongs_to :user
+- belongs_to :item
+- has_one :address
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
+## addressesテーブル
+|Column          |Type        |Options            |
+|--------------- |------------|-------------------|
+| postal_code    | string     | null false        |
+| prefectures_id | integer    | null false        |
+| municipality   | string     | null false        |
+| house number   | string     | null false        |
+| building_name  | string     |                   |
+| tel_number     | string     | null false        |
+| buy_item       | references | foreign_key: true |
 
-* ...
+### Association
+- belongs_to :buy_item
