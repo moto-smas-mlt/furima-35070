@@ -10,16 +10,20 @@ class Item < ApplicationRecord
 
   with_options presence: true do
     validates :image
-    validates :name
-    validates :description
-    validates :category_id
-    validates :item_status_id
-    validates :delivery_charge_burden_id
-    validates :prefecture_id
-    validates :days_to_ship_id
+    validates :name, length: { maximum: 40 }
+    validates :description, length: { maximum: 1000 } 
+  
+    with_options numericality: { other_than: 0 } do
+     validates :category_id
+     validates :item_status_id
+     validates :delivery_charge_burden_id
+     validates :prefecture_id
+     validates :days_to_ship_id
+    end
     
-    with_options numericality: {only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9,999,999, message: "is invalid"}
+    with_options numericality: {only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9,999,999, message: "is invalid"} do
       validates :price
+    end
   end
 
 end
