@@ -17,11 +17,11 @@ class Item < ApplicationRecord
      validates :category_id
      validates :item_status_id
      validates :delivery_charge_burden_id
-     validates :prefecture_id
+     validates :prefectures_id
      validates :days_to_ship_id
     end
     
-    with_options numericality: {only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9,999,999, message: "is invalid"} do
+    with_options numericality: {only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999, message: "is invalid"} do
       validates :price
     end
   end
