@@ -1,4 +1,4 @@
-class Genre < ActiveHash::Base
+class ItemStatus < ActiveHash::Base
   self.data = [
 
     { id: 0, name: '---' },

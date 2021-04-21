@@ -1,4 +1,4 @@
-class Genre < ActiveHash::Base
+class DeliveryChargeBurden < ActiveHash::Base
   self.data = [
 
     { id: 0, name: '---' },
