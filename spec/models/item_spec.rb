@@ -6,7 +6,6 @@ RSpec.describe Item, type: :model do
   end
 
   describe '商品の情報保存' do
-
     context '商品の情報保存がうまくいくとき' do
       it '全ての値が問題無く保存できること' do
         expect(@item).to be_valid
@@ -14,7 +13,6 @@ RSpec.describe Item, type: :model do
     end
 
     context '商品の情報保存がうまくいかないとき' do
-
       it '出品画像が空では保存できないこと' do
         @item.image = nil
         @item.valid?
@@ -72,25 +70,25 @@ RSpec.describe Item, type: :model do
       it '価格が¥300未満だと保存できない' do
         @item.price = '299'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price out of setting range")
+        expect(@item.errors.full_messages).to include('Price out of setting range')
       end
 
       it '価格が¥10,000,000以上だと保存できない' do
         @item.price = '10000000'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price out of setting range")
+        expect(@item.errors.full_messages).to include('Price out of setting range')
       end
 
       it '価格が全角数字だと保存できない' do
         @item.price = '３００'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price out of setting range")
+        expect(@item.errors.full_messages).to include('Price out of setting range')
       end
 
       it 'userが紐付いてないと保存できないこと' do
         @item.user = nil
         @item.valid?
-        expect(@item.errors.full_messages).to include("User must exist")
+        expect(@item.errors.full_messages).to include('User must exist')
       end
     end
   end
