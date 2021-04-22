@@ -11,19 +11,19 @@ class Item < ApplicationRecord
   with_options presence: true do
     validates :image
     validates :name, length: { maximum: 40 }
-    validates :description, length: { maximum: 1000 } 
-  
-    with_options numericality: { other_than: 0, message: "Unselected" } do
-     validates :category_id
-     validates :item_status_id
-     validates :delivery_charge_burden_id
-     validates :prefectures_id
-     validates :days_to_ship_id
+    validates :description, length: { maximum: 1000 }
+
+    with_options numericality: { other_than: 0, message: 'Unselected' } do
+      validates :category_id
+      validates :item_status_id
+      validates :delivery_charge_burden_id
+      validates :prefectures_id
+      validates :days_to_ship_id
     end
-    
-    with_options numericality: {only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999, message: "out of setting range"} do
+
+    with_options numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999,
+                                 message: 'out of setting range' } do
       validates :price
     end
   end
-
 end
