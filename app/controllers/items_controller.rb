@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :edit]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update]
 
   def new
     @item = Item.new
@@ -34,6 +34,7 @@ class ItemsController < ApplicationController
     else
       render :edit
     end
+    redirect_to root_path unless @item.user_id == current_user.id
   end
 
   private
