@@ -50,9 +50,9 @@ RSpec.describe Item, type: :model do
       end
 
       it '発送元の地域が空では保存できないこと' do
-        @item.prefectures_id = ''
+        @item.prefecture_id = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("Prefectures can't be blank")
+        expect(@item.errors.full_messages).to include("Prefecture can't be blank")
       end
 
       it '発送までの日数が空では保存できないこと' do
