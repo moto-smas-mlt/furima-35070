@@ -3,12 +3,10 @@ class Order
   attr_accessor :user_id, :item_id, :postal_code, :prefecture_id, :municipality, :house_number, :building_name, :tel_number
 
   with_options presence: true do
-    validates :user_id
-    validates :item_id
     validates :postal_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
     validates :municipality
     validates :house_number
-    validates :tel_number
+    validates :tel_number, length: { maximum: 11 }
   end
   validates :prefecture_id, numericality: {other_than: 0, message: "can't be blank"}
 
