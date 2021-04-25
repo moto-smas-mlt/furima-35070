@@ -1,6 +1,7 @@
 class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :user
+  has_one :buy_item
   belongs_to :category
   belongs_to :item_status
   belongs_to :delivery_charge_burden
