@@ -8,10 +8,11 @@ class Order
     validates :municipality
     validates :house_number
     validates :tel_number, length: { maximum: 11 }
+    validates :token
+    validates :user_id
+    validates :item_id
   end
   validates :prefecture_id, numericality: { other_than: 0, message: "can't be blank" }
-
-  validates :token, presence: true
 
   def save
     buy_item = BuyItem.create(user_id: user_id, item_id: item_id)

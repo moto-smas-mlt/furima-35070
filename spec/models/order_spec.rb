@@ -6,13 +6,19 @@ RSpec.describe Order, type: :model do
   end
 
   describe '商品の購入情報が保存される' do
+ 
     context '商品の購入情報の保存がうまくいくとき' do
       it '全ての値が問題無く保存できること' do
         expect(@order).to be_valid
       end
+
+      it '建物名は空でも保存がうまくいく' do
+        @order.building_name = ''
+        expect(@order).to be_valid
+      end
     end
 
-    context '商品の購入情報の保存がうまくいくとき' do
+    context '商品の購入情報の保存がうまくいかないとき' do
       it '郵便番号が空では保存できないこと' do
         @order.postal_code = ''
         @order.valid?
@@ -25,8 +31,8 @@ RSpec.describe Order, type: :model do
         expect(@order.errors.full_messages).to include('Postal code is invalid. Include hyphen(-)')
       end
 
-      it '都道府県が空では保存できないこと' do
-        @order.prefecture_id = ''
+      it '都道府県が「0」では保存できないこと' do
+        @order.prefecture_id = 0
         @order.valid?
         expect(@order.errors.full_messages).to include("Prefecture can't be blank")
       end
@@ -59,6 +65,18 @@ RSpec.describe Order, type: :model do
         @order.token = nil
         @order.valid?
         expect(@order.errors.full_messages).to include("Token can't be blank")
+      end
+
+      it 'user_idが空では登録できないこと' do
+        @order.user_id = ''
+        @order.valid?
+        expect(@order.errors.full_messages).to include("User can't be blank")
+      end
+
+      it 'item_idが空では登録できないこと' do
+        @order.item_id = ''
+        @order.valid?
+        expect(@order.errors.full_messages).to include("Item can't be blank")
       end
     end
   end

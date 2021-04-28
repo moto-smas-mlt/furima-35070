@@ -4,8 +4,7 @@ class OrdersController < ApplicationController
 
   def index
     @order = Order.new
-    redirect_to root_path if @item.user_id == current_user.id
-    redirect_to root_path if @item.buy_item.present?
+    redirect_to root_path if @item.user_id == current_user.id || @item.buy_item.present?
   end
 
   def create
@@ -22,7 +21,7 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:item_id, :postal_code, :prefecture_id, :municipality, :house_number, :building_name, :tel_number).merge(
+    params.require(:order).permit(:postal_code, :prefecture_id, :municipality, :house_number, :building_name, :tel_number).merge(
       user_id: current_user.id, item_id: params[:item_id], token: params[:token]
     )
   end
