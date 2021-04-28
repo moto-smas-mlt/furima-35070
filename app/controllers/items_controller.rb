@@ -24,6 +24,7 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    redirect_to root_path if @item.buy_item.present?
   end
 
   def update
@@ -32,11 +33,11 @@ class ItemsController < ApplicationController
     else
       render :edit
     end
+    redirect_to root_path if @item.buy_item.present?
   end
 
   def destroy
-    @item.destroy
-    redirect_to root_path
+    redirect_to root_path if @item.destroy || @item.buy_item.present?
   end
 
   private
